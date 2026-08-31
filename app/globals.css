@@ -2,25 +2,148 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #555555;
+  --brand: #006699;
+  --brand-dark: #004d73;
+  --navy: #1a365d;
+  --heading: #333333;
+  --muted: #777777;
+  --topbar: #f1f1f1;
+  --border: #e5e5e5;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-brand: var(--brand);
+  --color-brand-dark: var(--brand-dark);
+  --color-navy: var(--navy);
+  --color-heading: var(--heading);
+  --color-muted: var(--muted);
+  --color-topbar: var(--topbar);
+  --color-border: var(--border);
+  --font-sans: var(--font-montserrat);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-montserrat), Montserrat, Helvetica, Arial, sans-serif;
+}
+
+::selection {
+  background: #006699;
+  color: #fff;
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(56px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-rise {
+  animation: hero-rise 0.9s ease-out both;
+}
+
+.hero-rise-delay-1 {
+  animation-delay: 0.08s;
+}
+
+.hero-rise-delay-2 {
+  animation-delay: 0.18s;
+}
+
+.hero-rise-delay-3 {
+  animation-delay: 0.28s;
+}
+
+@keyframes fab-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes fab-glow-whatsapp {
+  0% {
+    box-shadow: 0 0 0 0 rgb(37 211 102 / 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgb(37 211 102 / 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(37 211 102 / 0);
+  }
+}
+
+@keyframes fab-glow-call {
+  0% {
+    box-shadow: 0 0 0 0 rgb(0 102 153 / 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgb(0 102 153 / 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(0 102 153 / 0);
+  }
+}
+
+.fab-btn {
+  display: flex;
+  height: 60px;
+  width: 60px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #fff;
+  box-shadow: 0 10px 25px rgb(0 0 0 / 0.3);
+  transition: transform 0.3s;
+}
+
+.fab-btn svg {
+  height: 28px;
+  width: 28px;
+}
+
+.fab-whatsapp {
+  background: #25d366;
+  animation:
+    fab-float 2.5s ease infinite,
+    fab-glow-whatsapp 2s ease infinite;
+}
+
+.fab-call {
+  background: var(--brand);
+  animation:
+    fab-float 2.5s ease infinite,
+    fab-glow-call 2s ease infinite;
+}
+
+.fab-btn:hover {
+  transform: scale(1.15);
+}
+
+@media (max-width: 768px) {
+  .fab-btn {
+    height: 48px;
+    width: 48px;
+  }
+
+  .fab-btn svg {
+    height: 22px;
+    width: 22px;
+  }
 }
